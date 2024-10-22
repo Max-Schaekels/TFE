@@ -1,0 +1,15 @@
+Rapport de Stage de Maximilien Schaekels
+-----------------------------------------
+
+21/10 :
+-------
+
+- Installation et configuration github
+- Création du projet django
+- Création de l’application dans django
+
+22/10 :
+-------
+
+- Révision des commandes django (relecture cours, tutoriels et informations générale sur internet)
+- Reboot projet django selon le tutoriel dans le but de simplifier la compréhension et améliorer la structure du projet. 
