@@ -12,4 +12,6 @@ Rapport de Stage de Maximilien Schaekels
 -------
 
 - Révision des commandes django (relecture cours, tutoriels et informations générale sur internet)
-- Reboot projet django selon le tutoriel dans le but de simplifier la compréhension et améliorer la structure du projet. 
+- Reboot projet django selon le tutoriel dans le but de simplifier la compréhension et améliorer la structure du projet.
+- Mise d'un template de base générale, d'un template header et d'un template footer
+- Début travail page d'acceuil 
