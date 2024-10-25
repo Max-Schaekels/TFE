@@ -2,82 +2,24 @@
 
 {%block content %}
    
-<div  class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
-    <div  id="carouselExampleControls" data-bs-ride="carousel" class="carousel slide carousel-fade light_arrow">
-        <div  class="carousel-inner">
-            <!-- a changer les images et le text lié-->
-            <div  class="carousel-item active background_bg" data-img-src="/assets/files/115347265551009984873978960561874772983192541684755242040.png" style="background-image: url(&quot;/assets/files/115347265551009984873978960561874772983192541684755242040.png&quot;);"> 
-                <div  class="banner_slide_content">
-                    <div  class="container">
-                        <div  class="row">
-                            <div  class="col-lg-7 col-9">
-                                <div  class="banner_content overflow-hidden">
-                                    <h5  data-animation="slideInLeft" data-animation-delay="0.5s" class="mb-3 staggered-animation font-weight-light animated slideInLeft" style="animation-delay: 0.5s; opacity: 1;">20% de réduction !</h5>
-                                    <h2  data-animation="slideInLeft" data-animation-delay="1s" class="staggered-animation animated slideInLeft" style="animation-delay: 1s; opacity: 1;">Man Fashion</h2>
-                                    <a data-animation="slideInLeft" data-animation-delay="1.5s" class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft" href="http://localhost:4300/" style="animation-delay: 1.5s; opacity: 1;">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div  class="carousel-item background_bg" data-img-src="/assets/files/17099405955142852076105633054671075224313121684753428765.png" style="background-image: url(&quot;/assets/files/17099405955142852076105633054671075224313121684753428765.png&quot;);">
-                <div  class="banner_slide_content">
-                    <div  class="container">
-                        <div  class="row">
-                            <div  class="col-lg-7 col-9">
-                                <div  class="banner_content overflow-hidden">
-                                    <h5  data-animation="slideInLeft" data-animation-delay="0.5s" class="mb-3 staggered-animation font-weight-light animated slideInLeft" style="animation-delay: 0.5s; opacity: 1;">Réduction de 50% !</h5>
-                                    <h2  data-animation="slideInLeft" data-animation-delay="1s" class="staggered-animation animated slideInLeft" style="animation-delay: 1s; opacity: 1;">Woman Fashion</h2>
-                                    <a data-animation="slideInLeft" data-animation-delay="1.5s" class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft" href="http://localhost:4300/" style="animation-delay: 1.5s; opacity: 1;">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item background_bg" data-img-src="/assets/files/2850766279112079091504712247552853779750349121684753505113.png" style="background-image: url(&quot;/assets/files/2850766279112079091504712247552853779750349121684753505113.png&quot;);">
-                <div  class="banner_slide_content">
-                    <div  class="container">
-                        <div  class="row">
-                            <div  class="col-lg-7 col-9">
-                                <div  class="banner_content overflow-hidden">
-                                    <h5  data-animation="slideInLeft" data-animation-delay="0.5s" class="mb-3 staggered-animation font-weight-light animated slideInLeft" style="animation-delay: 0.5s; opacity: 1;">Passez au niveau Supérieur !</h5>
-                                    <h2  data-animation="slideInLeft" data-animation-delay="1s" class="staggered-animation animated slideInLeft" style="animation-delay: 1s; opacity: 1;">Summer Sale</h2>
-                                    <a data-animation="slideInLeft" data-animation-delay="1.5s" class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft" href="http://localhost:4300/" style="animation-delay: 1.5s; opacity: 1;">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a  href="#carouselExampleControls" role="button" data-bs-slide="prev" class="carousel-control-prev"><i  class="ion-chevron-left"></i></a>
-        <a  href="#carouselExampleControls" role="button" data-bs-slide="next" class="carousel-control-next"><i  class="ion-chevron-right"></i></a>
-    </div>
-</div>
+
+{% include "partials/slider.html" with sliders=sliders %} <!-- Ligne servant à inclure les sliders sur la page-->
 <div  class="main_content">
     <div  class="section pb_20">
         <div  class="container">
             <div  class="row">
+                <!-- boucle collection-->
+                {% for collection in collections %}
                 <div  class="col-md-6">
-                    <div  class="single_banner"><img alt="shop_banner_img1" src="/assets/files/134985227484251691648652568177479961559477851684757880896.png">
+                    <div  class="single_banner"><img alt="shop_banner_img1" src="{{ collection.image.url }}">
                         <div  class="single_banner_info">
-                            <h5 class="single_bn_title1">Super Sale</h5>
-                            <h3 class="single_bn_title">New Collection</h3>
-                            <a class="single_bn_link" href="http://localhost:4400/">Shop Now</a>
+                            <h5 class="single_bn_title1">{{ collection.description }}</h5>
+                            <h3 class="single_bn_title">{{ collection.title }}</h3>
+                            <a class="single_bn_link" href="{{ collection.button_link }}">{{ collection.button_text }}</a>
                         </div>
                     </div>
                 </div>
-                <div  class="col-md-6">
-                    <div  class="single_banner"><img alt="shop_banner_img1" src="/assets/files/1231816139442978863631268994779183882351500061684757886381.png">
-                        <div  class="single_banner_info">
-                            <h5 class="single_bn_title1">Super Sale</h5>
-                            <h3 class="single_bn_title">New Collection</h3>
-                            <a class="single_bn_link" href="http://localhost:4400/">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
