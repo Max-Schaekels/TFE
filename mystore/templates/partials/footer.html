@@ -7,21 +7,17 @@
                 <div  class="col-lg-3 col-md-6 col-sm-12">
                     <div  class="widget">
                         <div  class="footer_logo"><a  href="#">
-                                <h2 >Mystore</h2>
+                                <h2>{{ request.session.name }}</h2>
                             </a></div>
-                        <p > Retrouvez tous vos articles favoris chez nous ! </p>
+                        <p >{{ request.session.description }} </p>
                     </div>
                     <div  class="widget">
                         <ul  class="social_icons social_white">
+                            {% for social in request.session.socials %}
                             <li>
-                                <a target="_blank" href="https://facebook.com"><i class="ion-social-facebook"></i></a>
+                                <a target="_blank" href="{{social.link}}"><i class="{{social.icon}}"></i></a>
                             </li>
-                            <li>
-                                <a target="_blank" href="https://www.youtube.com/"><i class="ion-social-youtube-outline"></i></a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://www.instagram.com/"><i class="ion-social-instagram-outline"></i></a>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -29,21 +25,11 @@
                     <div  class="widget">
                         <h6  class="widget_title">Useful Links</h6>
                         <ul  class="widget_links">
+                            {% for page in request.session.foot_pages %}
                             <li>
-                                <a ng-reflect-router-link="/page,a-propos-de-nous-shop" href="/page/a-propos-de-nous-shop">A Propos de nous</a>
+                                <a  href="{% url 'page' page.slug %}">{{ page.name }}</a>
                             </li>
-                            <li>
-                                <a ng-reflect-router-link="/page,nos-services-mystore" href="/page/nos-services-mystore">Nos services</a>
-                            </li>
-                            <li>
-                                <a ng-reflect-router-link="/page,contactez-nous-category" href="/page/contactez-nous-category">Contactez-Nous</a>
-                            </li>
-                            <li>
-                                <a ng-reflect-router-link="/page,nos-partenaires-mudey" href="/page/nos-partenaires-mudey">Nos partenaires</a> <!-- A changer-->
-                            </li>
-                            <li >
-                                <a ng-reflect-router-link="/page,mentions-lgales-espero" href="/page/mentions-lgales-espero">Mentions légales</a><!-- A changer-->
-                            </li>
+                            {% endfor %}    
                         </ul>
                     </div>
                 </div>
@@ -83,15 +69,15 @@
                         <ul  class="contact_info contact_info_light">
                             <li >
                                 <i class="ti-location-pin"></i>
-                                <p >Rue des Assinthes 40 <br> 6567 Merbes-le-château </p>
+                                <p>{{ request.session.street }}<br> {{ request.session.code_postal }} {{ request.session.city }} </p>
                             </li>
                             <li >
                                 <i class="ti-email"></i>
-                                <a href="mailto:contact@jstore.fr">contact@mystore.be</a> <!-- A changer-->
+                                <a href="mailto:{{ request.session.email }}">{{ request.session.email }}</a> <!-- A changer-->
                             </li>
                             <li >
                                 <i  class="ti-mobile"></i>
-                                <p >+32 67 79 06 07</p>
+                                <p >{{ request.session.phone }}</p>
                             </li>
                         </ul>
                     </div>
@@ -103,7 +89,7 @@
         <div  class="container">
             <div  class="row">
                 <div  class="col-md-6">
-                    <p  class="mb-md-0 text-center text-md-start"> © 2024 TFE Maximilien Schaekels </p>
+                    <p  class="mb-md-0 text-center text-md-start"> {{ request.session.copyright }} </p>
                 </div>
                 <div  class="col-md-6">
                     <ul class="footer_payment text-center text-lg-end d-flex gap-2 justify-content-end">

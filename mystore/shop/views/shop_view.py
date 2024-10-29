@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from shop.models.Slider import Slider
 from shop.models.Collection import Collection
 from shop.models.Product import Product
+from shop.models.Page import Page
 
 
 def index(request):
@@ -21,5 +22,16 @@ def index(request):
         'best_sellers' : best_sellers,
         'featured' : featured,
         'special_offers' : special_offers,
+
+        })
+
+def display_page(request, slug):
+    page = get_object_or_404(Page, slug=slug)
+
+    
+
+    return render(request, 'shop/page.html', {
+        'page' : page,
+
 
         })
