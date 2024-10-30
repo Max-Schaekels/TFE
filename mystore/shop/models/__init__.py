@@ -6,3 +6,4 @@ from .Image import Image
 from .Setting import Setting
 from .Social import Social
 from .Page import Page
+from .Navcollection import Navcollection

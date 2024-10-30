@@ -28,10 +28,14 @@ def index(request):
 def display_page(request, slug):
     page = get_object_or_404(Page, slug=slug)
 
-    
-
     return render(request, 'shop/page.html', {
         'page' : page,
+        })
 
 
+def display_product(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+   
+    return render(request, 'shop/single_product.html', {
+        'product' : product,
         })

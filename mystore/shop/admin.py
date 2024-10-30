@@ -10,6 +10,7 @@ from shop.models.Social import Social
 from shop.models.Page import Page
 from django.db import models
 from ckeditor.widgets import CKEditorWidget
+from shop.models import Navcollection
 
 
 
@@ -33,10 +34,10 @@ class SocialAdmin(admin.ModelAdmin):
 class PageAdmin(admin.ModelAdmin):
     list_display = ('id', 'name','is_head', 'is_foot', 'is_checkout') #ce qui est afficher sur le pannel admin
     list_display_links = ('name',) #ce sur quoi on peut cliquer
-    list_editable = ('is_head', 'is_foot', 'is_checkout')
+    list_editable = ('is_head', 'is_foot', 'is_checkout') #permet d'editer en cochant/décochant
     formfield_overrides = {
         models.TextField : {'widget' : CKEditorWidget}
-    }
+    }#utilisation de ckeditor pour les fiels de type texte
     exclude = ('slug',) #exclus le champ slug du pannel admin
 
 #Gestion des donnée affichée sur la page concernant les Sliders : 
@@ -59,13 +60,27 @@ class CollectionAdmin(admin.ModelAdmin):
     
     display_image.short_description = 'image'
 
-#Gestion des donnée affichée sur la page concernant les catégories : 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name','display_image') #ce qui est afficher sur le pannel admin
-    list_display_links = ('name',) #ce sur quoi on peut cliquer
+
+#Gestion des donnée affichée sur la page concernant  Navcollections : 
+class NavcollectionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title','display_image') #ce qui est afficher sur le pannel admin
+    list_display_links = ('title',) #ce sur quoi on peut cliquer
 
     def display_image(self, obj):
         return format_html(f'<img src="{obj.image.url}" width="150" />')
+    
+    display_image.short_description = 'image'
+
+
+
+#Gestion des donnée affichée sur la page concernant les catégories : 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'is_mega', 'display_image') #ce qui est afficher sur le pannel admin
+    list_display_links = ('name',) #ce sur quoi on peut cliquer
+    list_editable = ('is_mega',)
+
+    def display_image(self, obj):
+        return format_html(f'<img src="{obj.image.url}" heigth="50" width="60" />')
     
     display_image.short_description = 'image'
     exclude = ('slug',) #exclus le champ slug du pannel admin
@@ -82,6 +97,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ('name',) #ce sur quoi on peut cliquer
     list_editable =('is_best_seller', 'is_new_arrival', 'is_featured', 'is_special_offer') #permet d'éditer ces paramètres dans le panneau admin sans passer par la page du produit
     list_per_page = 5
+    list_filter = ('created_at','updated_at',) #champ de filtre pour le try dans panel admin
+    search_fields = ('name',)
+    formfield_overrides = {
+        models.TextField : {'widget' : CKEditorWidget}
+    }
 
     def display_image(self, obj):
         first_image = obj.images.first()
@@ -108,3 +128,5 @@ admin.site.register(Setting, SettingAdmin)
 admin.site.register(Social, SocialAdmin)
 #Autorisation pour gérer "Page" via la page admin du site : 
 admin.site.register(Page, PageAdmin)
+#Autorisation pour gérer "Navcollection" via la page admin du site : 
+admin.site.register(Navcollection, NavcollectionAdmin)

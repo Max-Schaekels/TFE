@@ -27,7 +27,7 @@
                         <ul  class="widget_links">
                             {% for page in request.session.foot_pages %}
                             <li>
-                                <a  href="{% url 'page' page.slug %}">{{ page.name }}</a>
+                                <a  href="{% url 'shop:page' page.slug %}">{{ page.name }}</a>
                             </li>
                             {% endfor %}    
                         </ul>
