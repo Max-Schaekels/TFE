@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "partials/top_page.html" with name='Shop' %}
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row align-items-center mb-4 pb-1">
+                    <div class="col-12">
+                        <div class="product_header">
+                            <div class="product_header_left">
+                                <div class="custom_select">
+                                    <select id="sort" name="sort-price" class="form-control form-control-sm">
+                                        <option {% if sort_by_price == 'asc' %} selected {% endif %} value="asc">Tri par prix : Croissant</option>
+                                        <option {% if sort_by_price == 'desc' %} selected {% endif %} value="desc">Tri par prix : Décroissant </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="product_header_right">
+                                <div class="products_view">
+                                    <a href="?display=grid" class="shorting_icon grid {% if display == 'grid' %}active{% endif %}"><i class="ti-view-grid"></i></a>
+                                    <a href="?display=list" class="shorting_icon list {% if display == 'list' %}active{% endif %}"><i class="ti-layout-list-thumb"></i></a>
+                                </div>
+                                <div class="custom_select">
+                                    <select id="showing" name="showing" class="form-control form-control-sm">
+                                        <option value="">Showing</option>
+                                        <option value="6" {% if products.paginator.per_page == 6 %} selected {% endif %}>6</option>
+                                        <option value="9" {% if products.paginator.per_page == 9 %} selected {% endif %}>9</option>
+                                        <option value="12" {% if products.paginator.per_page == 12 %} selected {% endif %}>12</option>
+                                        <option value="18" {% if products.paginator.per_page == 18 %} selected {% endif %}>18</option>
+                                        <option value="36" {% if products.paginator.per_page == 36 %} selected {% endif %}>36</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row shop_container {{display}}">
+                    {% for product in products %} <!--Boucle pour les produits dans la colonne de gauche de la page Shop -->
+                    <div class="col-md-4 col-6">
+                        {% include "partials/product.html" with product=product %}
+
+                    </div>
+                    {% endfor %}
+                </div>
+                {% include "partials/pagination.html" with datas=products %}
+            </div>
+            <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h5 class="widget_title">Categories</h5>
+                        <ul class="widget_categories">
+                            <li><a href="#"><span class="categories_name">Women</span><span class="categories_num">(9)</span></a></li>
+                            <li><a href="#"><span class="categories_name">Top</span><span class="categories_num">(6)</span></a></li>
+                            <li><a href="#"><span class="categories_name">T-Shirts</span><span class="categories_num">(4)</span></a></li>
+                            <li><a href="#"><span class="categories_name">Men</span><span class="categories_num">(7)</span></a></li>
+                            <li><a href="#"><span class="categories_name">Shoes</span><span class="categories_num">(12)</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h5 class="widget_title">Filter</h5>
+                        <div class="filter_price">
+                             <div id="price_filter" data-min="0" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="$"></div>
+                             <div class="price_range">
+                                 <span>Price: <span id="flt_price"></span></span>
+                                 <input type="hidden" id="price_first">
+                                 <input type="hidden" id="price_second">
+                             </div>
+                         </div>
+                    </div>
+                    <div class="widget">
+                        <h5 class="widget_title">Brand</h5>	
+                        <ul class="list_brand">
+                            <li>
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="Arrivals" value="">
+                                    <label class="form-check-label" for="Arrivals"><span>New Arrivals</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="Lighting" value="">
+                                    <label class="form-check-label" for="Lighting"><span>Lighting</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="Tables" value="">
+                                    <label class="form-check-label" for="Tables"><span>Tables</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="Chairs" value="">
+                                    <label class="form-check-label" for="Chairs"><span>Chairs</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="Accessories" value="">
+                                    <label class="form-check-label" for="Accessories"><span>Accessories</span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const showing = document.querySelector('select#showing') //récuperation du select showing dans une variable
+    const sort = document.querySelector('select#sort') //récuperation du select sort dans une variable
+    const sendRequest = (event) =>{
+        const {name, value} = event.target
+
+        //vérification s'il y a une value 
+        if(!value){
+            return;
+        }
+
+        const queryParams = new URLSearchParams(window.location.search) // recherche paramete
+
+        //verification
+        if(queryParams.has(name)){
+            if(value == queryParams.get(name)){
+                return;
+            }
+            queryParams.set(name,value)
+        }else{
+            queryParams.append(name, value)
+        }
+
+        const newUrl = `${window.location.origin}${window.location.pathname}?${queryParams.toString()}`; //recherche nouvelle url (atttention au backstick)
+
+        //Actualisez le navigateur avec la nouvelle URL
+        window.location.href = newUrl;
+    }
+    showing.addEventListener('change', sendRequest)
+    sort.addEventListener('change', sendRequest)
+
+</script>
+{% endblock %}

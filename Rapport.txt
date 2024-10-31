@@ -15,3 +15,109 @@ Rapport de Stage de Maximilien Schaekels
 - Reboot projet django selon le tutoriel dans le but de simplifier la compréhension et améliorer la structure du projet.
 - Mise d'un template de base générale, d'un template header et d'un template footer
 - Début travail page d'acceuil 
+
+23/10 :
+-------
+
+- Suite travail page d’acceuil 
+- Suppression de l’environnement virtuel utilisé pour le projet à cause d’un problème lors de l’utilisation de certaines 
+  commandes de la version personnalisée de django utilisée durant le projet.
+- Création de la db
+- Création modèle slides
+- Migration sur la db
+
+
+24/10 :
+-------
+
+- Création d’un superutilisateur 
+- Ajout de la gestion des sliders à la page admin
+- Gestion de l’affichage des données lors de la gestion d’un slider dans la page admin
+- Création via la page admin de sliders de test
+
+25/10 :
+-------
+
+- Fin de la configuration des sliders et séparation du code html dans le but de pouvoir les inclures facilements sur d’autres page
+- Création du model pour des collections 
+- Ajoute de la gestion via le pannel admin des collections
+- Intégration des collections à la page d’accueil. 
+
+28/10 :
+-------
+
+- Création des models images, product et category
+- Migration des models
+- Gestion de l’interface du panneau admin pour les nouveaux models
+- Créations de catégories via le pannel admin
+- Back-up des DB et création d’un script visant à réinjecter le contenu de nos backups dans la base de données
+- Codage de la fonctionnalité d’ajout d’image dans la partie admin de l’application. 
+- Création d’un produit test
+- Création d’un template pour un pour produit afin de simplifier le code de la page d’index
+- Mise en lien des sections new arrivals, best_seller, featured et special offer sur la page d’acceuil avec les produits. 
+
+29/10 :
+-------
+
+- Création du model settings dans l’application shop dans le but de permettre de gérer les informations affichées dans le footer par le panel admin. 
+- Création d’un fichier context_process qui a pour but de récupérer des informations pour les rendres accessibles dans différents templates. 
+- Modification du header et du footer pour les rendres dynamique avec le model settings
+- Création d’un model Social pour gérer les réseaux sociaux de la même façon que setting
+- Modification de contexte_process
+- Adaptation du footer pour inclure le social
+- Création d’un model page pour permettre l’enregistrement en base de donnée et la gestion des pages via le panel admin 
+- Modification de contexte_process
+- Création d’un template page.html 
+- Création d’un template partial top_page qui sera utiliser dans le template page pour structurer la page
+- Installation de la librarie django ckeditor version 6.7.0
+- Paramétrage de ckeditor pour le rendre disponible dans la partie admin du site
+- Mise en page des pages About, contact, partenaire, etc. 
+
+30/10 :
+-------
+
+- Gestion du méga-menu, récupération des catégories et produit dans le fichier context_processor pour le rendre accessible plus facilement dans le header
+- Ajout d’un filtre de classement et d’un champ de recherche pour la section product du pannel admin
+- Modification de la page header pour y simplifier l’affichage du mega menu
+- Modification de context_processor et de header pour aussi récupérer une image du produit s’il y en a une et l’ajoutée. 
+- Création, paramétrage et mise en place d’un model NavCollection visant à afficher des collections dans le mega menu
+- Création d’un fichier templatetags dans lequel on va créer des filtres. 
+- Création d’un template pour l’affichage d’une page d’un simple produit.
+- Paramétrage du template pour le rendre dynamique
+
+31/10 :
+-------
+
+- Création de la page shop (template,url,view)
+- Création d’une pagination pour la page shop
+- Paramétrage et implémentation de la pagination (gestion des erreurs, nombre de produits par page, etc.)
+- Création d’un template partielle dans lequel on le code de la pagination afin de le rendre plus facilement accessible dans d’autres parties. 
+- Modification des méthodes d’affiche des produits dans shop (liste ou grille) afin de les rendre dynamique et adaptative. 
+- Modification de la barre permettant de choisir le nombre de produit à afficher sur la page shop grâce à du javascript
+- Mise en fonction du tri par prix (croisssant ou décroissant) sur la page shop
+
+04/11 :
+-------
+
+
+05/11 :
+-------
+
+
+06/11 :
+-------
+
+
+07/11 :
+-------
+
+
+
+
+
+
+
+
+
+
+
