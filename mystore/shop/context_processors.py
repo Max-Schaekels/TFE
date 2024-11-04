@@ -3,6 +3,8 @@ from shop.models.Social import Social
 from shop.models.Page import Page
 from shop.models.Category import Category
 from shop.models.Navcollection import Navcollection
+from shop.services.cart_service import CartService
+
 
 
 
@@ -15,6 +17,7 @@ def site_settings(request):
     foot_pages = Page.objects.filter(is_foot=True)
     mega_categories = Category.objects.filter(is_mega=True)
     navs = Navcollection.objects.all()[:3]
+    cart_data = CartService.get_cart_details(request)
 
     my_socials = []
     my_head_pages = []
@@ -85,6 +88,7 @@ def site_settings(request):
         'foot_pages' : my_foot_pages,
         'mega_categories' : my_mega_categories,
         'nav_collections' : nav_collections,
+        'cart_data' : cart_data,
 
     }
 

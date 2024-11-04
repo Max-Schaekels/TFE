@@ -11,6 +11,7 @@ from shop.models.Page import Page
 from django.db import models
 from ckeditor.widgets import CKEditorWidget
 from shop.models import Navcollection
+from shop.models import Carrier
 
 
 
@@ -113,6 +114,19 @@ class ProductAdmin(admin.ModelAdmin):
     
     display_image.short_description = 'image'
 
+#Gestion des donnée affichée sur la page concernant les transporteurs(carrier) : 
+class CarrierAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'price', 'display_image') #ce qui est afficher sur le pannel admin
+    list_display_links = ('name',) #ce sur quoi on peut cliquer
+    formfield_overrides = {
+        models.TextField : {'widget' : CKEditorWidget}
+    }
+
+    def display_image(self, obj):
+        return format_html(f'<img src="{obj.image.url}" heigth="50" width="60" />')
+    
+    display_image.short_description = 'image'
+
 
 #Autorisation de gérer les slides via la page admin du site : 
 admin.site.register(Slider, SliderAdmin)
@@ -130,3 +144,5 @@ admin.site.register(Social, SocialAdmin)
 admin.site.register(Page, PageAdmin)
 #Autorisation pour gérer "Navcollection" via la page admin du site : 
 admin.site.register(Navcollection, NavcollectionAdmin)
+#Autorisation pour gérer "Carrier" via la page admin du site : 
+admin.site.register(Carrier, CarrierAdmin)

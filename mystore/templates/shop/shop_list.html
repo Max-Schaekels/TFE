@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
+{% block styles %}
+<style>
+    ul.widget_categories li a.active {
+        color: red !important;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+
 
 {% include "partials/top_page.html" with name='Shop' %}
 
@@ -54,11 +64,21 @@
                     <div class="widget">
                         <h5 class="widget_title">Categories</h5>
                         <ul class="widget_categories">
-                            <li><a href="#"><span class="categories_name">Women</span><span class="categories_num">(9)</span></a></li>
-                            <li><a href="#"><span class="categories_name">Top</span><span class="categories_num">(6)</span></a></li>
-                            <li><a href="#"><span class="categories_name">T-Shirts</span><span class="categories_num">(4)</span></a></li>
-                            <li><a href="#"><span class="categories_name">Men</span><span class="categories_num">(7)</span></a></li>
-                            <li><a href="#"><span class="categories_name">Shoes</span><span class="categories_num">(12)</span></a></li>
+                            {% for category in categories %}
+                            <li>
+                                <a class="{% if default_category_id == category.id %}active{% endif %}" href="?category_id={{category.id}}"> <!-- classe mise pour montrer dans quel catégorie nous nous trouvons-->
+                                    <span class="categories_name">{{ category.name }}</span>
+                                    <span class="categories_num">({{ category.product_set.all | length }})</span> <!-- Nombre de produit par catégorie -->
+                                </a>
+                            </li>
+                            {% endfor %}
+                            <li>
+                                <a class="{% if default_category_id == 'all' %}active{% endif %}" href="?category_id=all">
+                                    <span class="categories_name"> Tous les produits </span>
+                                    <span class="categories_num">({{ products.paginator.count }})</span> <!-- Nombre de produit au total -->
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                     <div class="widget">

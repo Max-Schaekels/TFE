@@ -99,6 +99,25 @@ Rapport de Stage de Maximilien Schaekels
 04/11 :
 -------
 
+- Création et mise en place du filtre par catégorie sur la page shop. 
+- Mise en place d’un block css pour mettre en évidence la catégorie dans laquelle nous nous trouvons. 
+- Création d’un model Carrier pour gérer les transporteurs. 
+- Ajout et paramétrage du Model Carrier à admin
+- Création du panier (view/chemin url/template)
+- Création d’une url et d’une méthode pour ajouter un produit au panier
+- Création d’un service Cart(panier) afin de ne pas encombrer la vue 
+- Définition des méthodes du panier dans le service
+- Mise en lien du service avec la view
+- Modification du template cart afin de le rendre dynamique
+- Création d’une url et d’une méthode pour retirer une quantité produit du panier (passer de 4 à 3 par exemple et si on passe de 1 à 0 le produit se retire du panier)
+- Intégration de la méthode au panier
+- Création d’une url et d’une méthode pour supprimer un produit du panier (cliquer sur la X pour enlever le produit quel que soit la quantité) 
+- Mise en place d’une redirection vers la page home lorsque le panier est vide. 
+- Création d’une url, d’une méthode et d’un template pour la comparaison entre produit
+- Création d’un service comparaison
+- Modification du template compare pour le rendre adaptatif
+- Modification du header pour correctement afficher le panier
+
 
 05/11 :
 -------
