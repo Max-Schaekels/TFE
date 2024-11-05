@@ -122,6 +122,32 @@ Rapport de Stage de Maximilien Schaekels
 05/11 :
 -------
 
+- Création et mise en place de la liste des souhaits (création du chemin dans l’url, création du model dans view et création du template)
+- Création de l’url pour ajouter un produit à la liste de souhait.
+- Création d’un service wish
+- Mise en place et adaptation dynamique du template wishlist
+- Création de l’url et du model pour retirer un produit de la liste de souhaits
+- Mise en place du retrait de produit de la liste de souhait
+- Mise en place d’une redirection vers la page d’accueil lorsque la liste de souhait est vide. 
+- Ajout dans le template de base permettant l’affichage de message via le service cart. 
+- Création d’une application accounts qui sera destiné à gérer ce qui est en rapport avec les comptes utilisateurs. On crée une application plutôt que de l’intégrer dans shop afin de permettre si on en a besoin à l’avenir de plus facilement l’utiliser sur d’autres projets. 
+- Création des routes et des modèles pour signin, signup et logout(partie logout pas encore complétée)
+- Mise en place des templates pour signin et signup
+- Création d’un dossier forms dans l’application accounts, création d’un fichier CustomUserRegisterForm.py qui servira pour le formulaire d’inscription.  
+- Personnalisation du formulaire de base fournis par django en ajoutant ou modifiant des attributs associer à des widgets. 
+- Implémentation dans le template signup
+- Création d’un fichier Customer.py pour permettre d’avoir un modèle d’user plus personnaliser que celui apporter par django
+- Ajout d’un champ visant à sauvegarder le fait que l’utilisateur ait accepté les termes d’utilisation du site. 
+- Suite à la modification de user, il faut faire un backup des données de la base de données car on va de devoir la régénérer pour prendre en compte nos modification
+- Backup base de donnée
+- Modification du script pour loader la base de donnée
+- Suppression de l’ancienne base de donnée
+- Création de la nouvelle base
+- Migrations via django
+- Population de la nouvelle base de donnée grâce au script
+- Recréation d’un superuser
+- Ajout du nouveau model utilisateur au panel admin. 
+
 
 06/11 :
 -------

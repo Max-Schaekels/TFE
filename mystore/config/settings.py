@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
-    'shop'
+    'ckeditor',        
+    'accounts',
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+#précision du model à utiliser pour les utilisateurs
+AUTH_USER_MODEL = 'accounts.Customer'

@@ -31,6 +31,14 @@
 
     {% include "partials/header.html" %}
 
+    {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success fixed-bottom" style="left: 75%;">
+                {{ message }}
+            </div>
+            {% endfor %}
+    {% endif %}
+
 
     {% block content %}{% endblock %}
 

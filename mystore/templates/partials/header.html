@@ -40,11 +40,17 @@
                 <div  class="col-md-6">
                     <div  class="text-center text-md-end">
                         <ul  class="header_list">
-                            <li ><a  routerlink="/compare" ng-reflect-router-link="/compare" href="/compare"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
-                            <li ><a  routerlink="/wishlist" ng-reflect-router-link="/wishlist" href="/wishlist"><i class="ti-heart"></i><span >Wishlist</span></a></li>
-                            <li ><a  routerlink="/signin" ng-reflect-router-link="/signin" href="/signin"><i class="ti-user"></i><span >Signin</span></a>
+                            <li>
+                                <a routerlink="/compare" ng-reflect-router-link="/compare" href="/compare"><i class="ti-control-shuffle"></i><span>Compare</span></a>
                             </li>
-                            <li ><a  routerlink="/signup" ng-reflect-router-link="/signup" href="/signup"><i class="ti-user"></i><span >Signup</span></a>
+                            <li>
+                                <a routerlink="/wishlist" ng-reflect-router-link="/wishlist" href="/wishlist"><i class="ti-heart"></i><span >Wishlist</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'accounts:signin' %}"><i class="ti-user"></i><span >Signin</span></a>
+                            </li>
+                            <li >
+                                <a href="{% url 'accounts:signup' %}"><i class="ti-user"></i><span >Signup</span></a>
                             </li>
                             <li ></li>
                             <li ></li>

@@ -1,5 +1,5 @@
 from django.urls import path
-from shop.views import shop_view , cart_view, compare_view
+from shop.views import shop_view , cart_view, compare_view, wishlist_view
 
 app_name="shop" #nom de l'app
 
@@ -19,6 +19,11 @@ urlpatterns = [
     path('compare', compare_view.index, name='compare'),
     path('compare/add/<int:product_id>', compare_view.add_to_compare, name='add_to_compare'),
     path('compare/remove/<int:product_id>', compare_view.remove_from_compare, name='remove_from_compare'),
+
+    #Liste des souhaits
+    path('wishlist', wishlist_view.index, name='wishlist'),
+    path('wishlist/add/<int:product_id>', wishlist_view.add_to_wishlist, name='add_to_wishlist'),
+    path('wishlist/remove/<int:product_id>', wishlist_view.remove_from_wishlist, name='remove_from_wishlist'),
 
 
 
