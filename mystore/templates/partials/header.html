@@ -46,12 +46,27 @@
                             <li>
                                 <a routerlink="/wishlist" ng-reflect-router-link="/wishlist" href="/wishlist"><i class="ti-heart"></i><span >Wishlist</span></a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li>
-                                <a href="{% url 'accounts:signin' %}"><i class="ti-user"></i><span >Signin</span></a>
+                                <a href="{% url 'dashboard:home' %}"><i class="ti-user"></i><span >Dashboard</span></a>
+                            </li>
+                            <li>
+                                <!--Création d'un formulaire pour utiliser la méthode post dans le but de sécuriser la déconnexion-->
+                                <form id="logout-form" method="post" action="{% url 'accounts:logout' %}">
+                                    {% csrf_token %}
+                                    <a href="#" onclick="document.getElementById('logout-form').submit()">
+                                        <i class="ti-user"></i><span >Se déconnecter</span>
+                                    </a>
+                                </form>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{% url 'accounts:signin' %}"><i class="ti-user"></i><span >Connexion</span></a>
                             </li>
                             <li >
-                                <a href="{% url 'accounts:signup' %}"><i class="ti-user"></i><span >Signup</span></a>
+                                <a href="{% url 'accounts:signup' %}"><i class="ti-user"></i><span >Inscription</span></a>
                             </li>
+                            {% endif %}
                             <li ></li>
                             <li ></li>
                         </ul>

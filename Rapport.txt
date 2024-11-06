@@ -152,6 +152,23 @@ Rapport de Stage de Maximilien Schaekels
 06/11 :
 -------
 
+- Ajout de agree terms au formulaire d’inscription
+- Stylisation de la check box grâce à bootstrap 
+- Mise en place de la récupération du formulaire d’inscription dans view
+- Création du formulaire de connexion
+- Mise en place de la connexion
+- Création et mise en place de la méthode de déconnexion
+- Intégration aux templates
+- Création d’une application dashboard
+- Configuration de l’application dashboard dans django (ajout dans settings, url, etc.)
+- Création de la view dashboard_view.py 
+- Définition et création de la page index.html du dashboard
+- Mise en place du lien dashboard dans header
+- Création d’un model pour la gestion des adresses 
+- Début adaptation template
+- Ajoute d’un decorator dans dashboard_view pour être sûr que l’utilisateur est bien connecter
+- Suite de l’adaptation du template. 
+
 
 07/11 :
 -------
