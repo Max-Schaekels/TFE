@@ -31,7 +31,7 @@ def signin(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Vous êtes connnecté !')
-                return redirect('shop:home')
+                return redirect('dashboard:home')
             else:
                 messages.error(request, 'Username ou Mot de passe incorrecte.')
         else:

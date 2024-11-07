@@ -173,6 +173,18 @@ Rapport de Stage de Maximilien Schaekels
 07/11 :
 -------
 
+- Mise en place d’un bouton pour enregistrer les adresses. 
+- Création d’un dossier forms dans l’application dashboard dans lequel on crée le fichier AddressForm.py qui contiendra le code du formulaire pour récupérer les adresses de l’utilisateur. 
+- Création du formulaire
+- Mise en place du formulaire
+- Mise en place de la sauvegarde du formulaire et affichage de l’adresse sauvegardée
+- Faire en sorte que le formulaire n’apparaisse que quand on clique sur le bouton ajouter grâce à du javascript. 
+- Le bouton Ajouter disparait une fois qu’on a cliquer dessus et fait apparaitre le formulaire
+- Ajouter d’un bouton cancel qui fait disparait le formulaire et réapparaitre le bouton Ajouter. 
+- Rendre l’affichage des adresses dynamique en fonction de ce qui est enregistrer dans le formulaire. 
+- Ajout d’un bouton supprimer pour supprimer l’adresse
+- Modification du template pour correctement afficher ce qu’on à fait lorsqu’on clique sur adresse dans le dashboard
+- Modification dans l’application account de la redirection, on retourne maintenant vers le dashboard quand l’utilisateur se connecte. 
 
 
 
