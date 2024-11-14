@@ -1,0 +1,215 @@
+Rapport de Stage de Maximilien Schaekels
+-----------------------------------------
+
+21/10 :
+-------
+
+- Installation et configuration github
+- Création du projet django
+- Création de l’application dans django
+
+22/10 :
+-------
+
+- Révision des commandes django (relecture cours, tutoriels et informations générale sur internet)
+- Reboot projet django selon le tutoriel dans le but de simplifier la compréhension et améliorer la structure du projet.
+- Mise d'un template de base générale, d'un template header et d'un template footer
+- Début travail page d'acceuil 
+
+23/10 :
+-------
+
+- Suite travail page d’acceuil 
+- Suppression de l’environnement virtuel utilisé pour le projet à cause d’un problème lors de l’utilisation de certaines 
+  commandes de la version personnalisée de django utilisée durant le projet.
+- Création de la db
+- Création modèle slides
+- Migration sur la db
+
+
+24/10 :
+-------
+
+- Création d’un superutilisateur 
+- Ajout de la gestion des sliders à la page admin
+- Gestion de l’affichage des données lors de la gestion d’un slider dans la page admin
+- Création via la page admin de sliders de test
+
+25/10 :
+-------
+
+- Fin de la configuration des sliders et séparation du code html dans le but de pouvoir les inclures facilements sur d’autres page
+- Création du model pour des collections 
+- Ajoute de la gestion via le pannel admin des collections
+- Intégration des collections à la page d’accueil. 
+
+28/10 :
+-------
+
+- Création des models images, product et category
+- Migration des models
+- Gestion de l’interface du panneau admin pour les nouveaux models
+- Créations de catégories via le pannel admin
+- Back-up des DB et création d’un script visant à réinjecter le contenu de nos backups dans la base de données
+- Codage de la fonctionnalité d’ajout d’image dans la partie admin de l’application. 
+- Création d’un produit test
+- Création d’un template pour un pour produit afin de simplifier le code de la page d’index
+- Mise en lien des sections new arrivals, best_seller, featured et special offer sur la page d’acceuil avec les produits. 
+
+29/10 :
+-------
+
+- Création du model settings dans l’application shop dans le but de permettre de gérer les informations affichées dans le footer par le panel admin. 
+- Création d’un fichier context_process qui a pour but de récupérer des informations pour les rendres accessibles dans différents templates. 
+- Modification du header et du footer pour les rendres dynamique avec le model settings
+- Création d’un model Social pour gérer les réseaux sociaux de la même façon que setting
+- Modification de contexte_process
+- Adaptation du footer pour inclure le social
+- Création d’un model page pour permettre l’enregistrement en base de donnée et la gestion des pages via le panel admin 
+- Modification de contexte_process
+- Création d’un template page.html 
+- Création d’un template partial top_page qui sera utiliser dans le template page pour structurer la page
+- Installation de la librarie django ckeditor version 6.7.0
+- Paramétrage de ckeditor pour le rendre disponible dans la partie admin du site
+- Mise en page des pages About, contact, partenaire, etc. 
+
+30/10 :
+-------
+
+- Gestion du méga-menu, récupération des catégories et produit dans le fichier context_processor pour le rendre accessible plus facilement dans le header
+- Ajout d’un filtre de classement et d’un champ de recherche pour la section product du pannel admin
+- Modification de la page header pour y simplifier l’affichage du mega menu
+- Modification de context_processor et de header pour aussi récupérer une image du produit s’il y en a une et l’ajoutée. 
+- Création, paramétrage et mise en place d’un model NavCollection visant à afficher des collections dans le mega menu
+- Création d’un fichier templatetags dans lequel on va créer des filtres. 
+- Création d’un template pour l’affichage d’une page d’un simple produit.
+- Paramétrage du template pour le rendre dynamique
+
+31/10 :
+-------
+
+- Création de la page shop (template,url,view)
+- Création d’une pagination pour la page shop
+- Paramétrage et implémentation de la pagination (gestion des erreurs, nombre de produits par page, etc.)
+- Création d’un template partielle dans lequel on le code de la pagination afin de le rendre plus facilement accessible dans d’autres parties. 
+- Modification des méthodes d’affiche des produits dans shop (liste ou grille) afin de les rendre dynamique et adaptative. 
+- Modification de la barre permettant de choisir le nombre de produit à afficher sur la page shop grâce à du javascript
+- Mise en fonction du tri par prix (croisssant ou décroissant) sur la page shop
+
+04/11 :
+-------
+
+- Création et mise en place du filtre par catégorie sur la page shop. 
+- Mise en place d’un block css pour mettre en évidence la catégorie dans laquelle nous nous trouvons. 
+- Création d’un model Carrier pour gérer les transporteurs. 
+- Ajout et paramétrage du Model Carrier à admin
+- Création du panier (view/chemin url/template)
+- Création d’une url et d’une méthode pour ajouter un produit au panier
+- Création d’un service Cart(panier) afin de ne pas encombrer la vue 
+- Définition des méthodes du panier dans le service
+- Mise en lien du service avec la view
+- Modification du template cart afin de le rendre dynamique
+- Création d’une url et d’une méthode pour retirer une quantité produit du panier (passer de 4 à 3 par exemple et si on passe de 1 à 0 le produit se retire du panier)
+- Intégration de la méthode au panier
+- Création d’une url et d’une méthode pour supprimer un produit du panier (cliquer sur la X pour enlever le produit quel que soit la quantité) 
+- Mise en place d’une redirection vers la page home lorsque le panier est vide. 
+- Création d’une url, d’une méthode et d’un template pour la comparaison entre produit
+- Création d’un service comparaison
+- Modification du template compare pour le rendre adaptatif
+- Modification du header pour correctement afficher le panier
+
+
+05/11 :
+-------
+
+- Création et mise en place de la liste des souhaits (création du chemin dans l’url, création du model dans view et création du template)
+- Création de l’url pour ajouter un produit à la liste de souhait.
+- Création d’un service wish
+- Mise en place et adaptation dynamique du template wishlist
+- Création de l’url et du model pour retirer un produit de la liste de souhaits
+- Mise en place du retrait de produit de la liste de souhait
+- Mise en place d’une redirection vers la page d’accueil lorsque la liste de souhait est vide. 
+- Ajout dans le template de base permettant l’affichage de message via le service cart. 
+- Création d’une application accounts qui sera destiné à gérer ce qui est en rapport avec les comptes utilisateurs. On crée une application plutôt que de l’intégrer dans shop afin de permettre si on en a besoin à l’avenir de plus facilement l’utiliser sur d’autres projets. 
+- Création des routes et des modèles pour signin, signup et logout(partie logout pas encore complétée)
+- Mise en place des templates pour signin et signup
+- Création d’un dossier forms dans l’application accounts, création d’un fichier CustomUserRegisterForm.py qui servira pour le formulaire d’inscription.  
+- Personnalisation du formulaire de base fournis par django en ajoutant ou modifiant des attributs associer à des widgets. 
+- Implémentation dans le template signup
+- Création d’un fichier Customer.py pour permettre d’avoir un modèle d’user plus personnaliser que celui apporter par django
+- Ajout d’un champ visant à sauvegarder le fait que l’utilisateur ait accepté les termes d’utilisation du site. 
+- Suite à la modification de user, il faut faire un backup des données de la base de données car on va de devoir la régénérer pour prendre en compte nos modification
+- Backup base de donnée
+- Modification du script pour loader la base de donnée
+- Suppression de l’ancienne base de donnée
+- Création de la nouvelle base
+- Migrations via django
+- Population de la nouvelle base de donnée grâce au script
+- Recréation d’un superuser
+- Ajout du nouveau model utilisateur au panel admin. 
+
+
+06/11 :
+-------
+
+- Ajout de agree terms au formulaire d’inscription
+- Stylisation de la check box grâce à bootstrap 
+- Mise en place de la récupération du formulaire d’inscription dans view
+- Création du formulaire de connexion
+- Mise en place de la connexion
+- Création et mise en place de la méthode de déconnexion
+- Intégration aux templates
+- Création d’une application dashboard
+- Configuration de l’application dashboard dans django (ajout dans settings, url, etc.)
+- Création de la view dashboard_view.py 
+- Définition et création de la page index.html du dashboard
+- Mise en place du lien dashboard dans header
+- Création d’un model pour la gestion des adresses 
+- Début adaptation template
+- Ajoute d’un decorator dans dashboard_view pour être sûr que l’utilisateur est bien connecter
+- Suite de l’adaptation du template. 
+
+
+07/11 :
+-------
+
+- Mise en place d’un bouton pour enregistrer les adresses. 
+- Création d’un dossier forms dans l’application dashboard dans lequel on crée le fichier AddressForm.py qui contiendra le code du formulaire pour récupérer les adresses de l’utilisateur. 
+- Création du formulaire
+- Mise en place du formulaire
+- Mise en place de la sauvegarde du formulaire et affichage de l’adresse sauvegardée
+- Faire en sorte que le formulaire n’apparaisse que quand on clique sur le bouton ajouter grâce à du javascript. 
+- Le bouton Ajouter disparait une fois qu’on a cliquer dessus et fait apparaitre le formulaire
+- Ajouter d’un bouton cancel qui fait disparait le formulaire et réapparaitre le bouton Ajouter. 
+- Rendre l’affichage des adresses dynamique en fonction de ce qui est enregistrer dans le formulaire. 
+- Ajout d’un bouton supprimer pour supprimer l’adresse
+- Modification du template pour correctement afficher ce qu’on à fait lorsqu’on clique sur adresse dans le dashboard
+- Modification dans l’application account de la redirection, on retourne maintenant vers le dashboard quand l’utilisateur se connecte. 
+
+
+14/11 :
+-------
+
+- Restructuration de fichier dashboard_views (transfert d'une partie dans address_view pour plus de clarté et facilité de futur(s) potentielle(s) changement(s)). 
+- Adaptation du fichier urls de l'application dashboard pour corresopondre aux changements. 
+- Création du fichier account_views.py 
+- Création d'un premier formulaire (UserAccountForm) pour permettre aux utilisateur de modifier leur prénom, nom et email
+- Mise en place du formulaire dans la page du dashboard
+- Création d'un second formulaire (ResetPasswordForm) pour permettre aux utilisateurs de modifier leur mot de passe. 
+- Mise en place du second formulaire dans la page du dashboard
+- Création et mise en place de la fonction visant à modifier le mot de passe de l'utilisateur. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
