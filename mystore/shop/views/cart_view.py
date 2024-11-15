@@ -1,14 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from shop.models.Product import Product
 from shop.services.cart_service import CartService
+from shop.models.Carrier import Carrier
 
 
 def index(request):
+
+    #Récupération du carrier id via la barre d'adresse
+    carrier_id = request.GET.get('carrier_id')
+    if carrier_id and carrier_id != '':
+        carrier = Carrier.objects.filter(id=carrier_id).first()
+        if carrier :
+            request.session['carrier'] = {
+                'id' : carrier.id,
+                'name' : carrier.name,
+                'price' : carrier.price,
+            }
+
     cart = CartService.get_cart_details(request)
+
      #vérifier si il y a quelque chose dans le panier sinon rediriger vers page home
     if not len(cart['items']):
         return redirect('shop:home')
-    return render(request, 'shop/cart.html', {'cart': cart})
+    
+    #Récupération de transporteurs 
+    carriers = Carrier.objects.all()
+
+    return render(request, 'shop/cart.html', {'cart': cart, 'carriers':carriers})
 
 
 def add_to_cart(request, product_id):

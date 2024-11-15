@@ -200,6 +200,14 @@ Rapport de Stage de Maximilien Schaekels
 - Création et mise en place de la fonction visant à modifier le mot de passe de l'utilisateur. 
 
 
+15/11 :
+-------
+
+- Modification du panier afin de permettre à l'utilisateur de choisir son transporteur(société de livraison)
+- Modification de la fonction index de cart_view pour y récupérer les transporteurs et transmettre les informations à la page
+- Modification du template pour créer une barre de selection pour choisir le transporteur. 
+- Modification du service cart pour récuperer l'id du transporteur pour permettre dans le template d'afficher dans le select le même transporteur que dans le prix total.
+- Ajout d'un block script avec du javascript pour que le prix change de manière dynamique en fonction du transporteur choisi.  
 
 
 

@@ -15,11 +15,11 @@
                             <thead >
                                 <tr >
                                     <th  class="product-thumbnail">&nbsp;</th>
-                                    <th  class="product-name">Product</th>
-                                    <th  class="product-price">Price</th>
-                                    <th  class="product-quantity">Quantity</th>
+                                    <th  class="product-name">Produit</th>
+                                    <th  class="product-price">Prix</th>
+                                    <th  class="product-quantity">Quantité</th>
                                     <th  class="product-subtotal">Total</th>
-                                    <th  class="product-remove">Remove</th>
+                                    <th  class="product-remove">Retirer le produit</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -69,11 +69,23 @@
                 </div>
             </div>
             <div  class="row">
-                <div  class="col-md-6"></div>
                 <div  class="col-md-6">
                     <div  class="border p-3 p-md-4">
                         <div  class="heading_s1 mb-3">
-                            <h6 >Cart Totals</h6>
+                            <h6 >Total Panier</h6>
+                        </div>
+                        <select class="form-control" name="carrier_id" id="carrier_id">
+                            {% for carrier in carriers %}
+                                <option {% if cart.carrier_id == carrier.id %} selected {% endif %} value="{{ carrier.id }}">{{ carrier.name }} ({{ carrier.price | format_price }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div  class="col-md-6">
+                    <div  class="border p-3 p-md-4">
+                        <div  class="heading_s1 mb-3">
+                            <h6 >Total Panier</h6>
                         </div>
                         <div  class="table-responsive">
                             <table  class="table">
@@ -107,3 +119,39 @@
 </div>
 
 {% endblock %}
+
+{% block scripts %}
+<script>
+    // récupération du transporteur choisi dans le select
+    carrierForm = document.querySelector('select#carrier_id')
+
+    //fonction de mise à jour en fonction du choix du transporteur
+    const updateCarrier = (event) => {
+        const { name, value } = event.target
+       
+        //On vérifie si carrier id est défini ou non 
+        if (!carrier_id) {
+            return
+        }
+
+        const queryParams = new URLSearchParams(window.location.search)
+
+        if (queryParams.has(name)) {
+            queryParams.set(name, value)
+        } else {
+            queryParams.append(name, value)
+        }
+
+        //Récupération de la nouvelle url
+        const newUrl = `${window.location.origin}${window.location.pathname}?${queryParams.toString()}`
+
+        console.log(newUrl)
+
+        // Actualisez le navigateur avec la nouvelle URL
+        window.location.href = newUrl;
+    }
+    carrierForm.addEventListener('change', updateCarrier)
+</script>
+{% endblock %}
+
+

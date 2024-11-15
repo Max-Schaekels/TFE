@@ -52,10 +52,13 @@ class CartService:
             'sub_total_with_shipping': 0,
             'cart_count': 0,
         }
-        carrier = request.session.get('carrier') #recupération du transporteur
-        if not carrier:
+        carrier_data = request.session.get('carrier') #recupération du transporteur
+        if not carrier_data:
             carrier = Carrier.objects.first()
-        
+        else:
+            carrier = Carrier(**carrier_data)
+
+
         for product_id, quantity in cart.items():
             product = Product.objects.filter(id=product_id).first() #récupération du produit en filtrant par l'id
             
@@ -70,7 +73,7 @@ class CartService:
                         'image' : product.images.first().image.url,
                         'solde_price': product.solde_price,
                         'regular_price': product.regular_price,
-                        # Ajoutez d'autres attributs du produit ici
+                        
                     },
                     'quantity': quantity,
                     'sub_total': round(sub_total, 2),
@@ -81,6 +84,7 @@ class CartService:
                 result['sub_total'] += round(sub_total, 2)
                 result['cart_count'] += quantity
         
+        result['carrier_id'] = carrier.id
         result['carrier_name'] = carrier.name
         result['shipping_price'] = round(carrier.price, 2)
         result['taxe_amount'] = round(result['sub_total'] / (1 + tax_rate) * tax_rate, 2)
