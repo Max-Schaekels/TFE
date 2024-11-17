@@ -191,8 +191,8 @@
                                 <p class="cart_total"><strong>Frais de livraison :</strong><span class="cart_price"><span class="price_symbole"></span></span>{{ cart_data.shipping_price | format_price }}</p>
                                 <p class="cart_total"><strong>Total :</strong><span class="cart_price"><span class="price_symbole"></span></span>{{ cart_data.sub_total_with_shipping | format_price }}</p>
                                 <p class="cart_buttons">
-                                    <a routerlink="/cart" class="btn btn-fill-line view-cart" href="{% url 'shop:cart' %}">Voir Panier</a> 
-                                    <a routerlink="/checkout" class="btn btn-fill-out checkout" href="/checkout">Checkout</a>
+                                    <a class="btn btn-fill-line view-cart" href="{% url 'shop:cart' %}">Voir Panier</a> 
+                                    <a class="btn btn-fill-out checkout" href="{% url 'shop:checkout' %}">Checkout</a>
                                 </p>
                             </div>
                         </div>

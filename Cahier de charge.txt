@@ -210,7 +210,15 @@ Rapport de Stage de Maximilien Schaekels
 - Ajout d'un block script avec du javascript pour que le prix change de manière dynamique en fonction du transporteur choisi.  
 
 
+17/11 :
+-------
 
+- Début du travail sur la page de checkout (validation payement)
+- Etablissement de la route dans url de l'app shop
+- Création du fichier view
+- Création de la page htlm et mise en place du template 
+- Modification du fichier checkout_view pour lui transmettre les informations du panier
+- Adaptation de la collonne commande de la page pour la rendre dynamique/adaptative par rapport au contenu du panier
 
 
 
