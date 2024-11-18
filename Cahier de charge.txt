@@ -221,7 +221,19 @@ Rapport de Stage de Maximilien Schaekels
 - Adaptation de la collonne commande de la page pour la rendre dynamique/adaptative par rapport au contenu du panier
 
 
+18/11 :
+-------
 
+- Création d'une nouvelle base pour la page checkout dans le but de retirer les élèments superflus qui pourrait distraire l'utilisateur.
+- Suppression du header et du footer de la base_checkout
+- Ajout du nom de la société de livraison
+- Ajout de la posibilité de changer la société de livraison (reprise du code déjà disponible dans la partie panier pour la partie htlm et la partie view)
+- établissement d'un schéma pour visualiser les possibilités au niveau des adresses 
+- Modification du model address pour ajouter un attribu à author
+- Ajout d'une barre de selection reprennant les adresses de l'utilisateur s'il est connecté et en a d'enregistrer. 
+- dupplication et rename du formulaire addresse en formulaire checkoutaddress. 
+- Modification du nouveau formulaire pour lui ajouter un champ email
+- Ajout de se formulaire à la page checkout pour qu'il s'affiche si l'utilisateur est connecté et n'a pas encore enregistrer d'adresse.
 
 
 
