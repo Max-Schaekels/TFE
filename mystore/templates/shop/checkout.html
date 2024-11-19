@@ -25,12 +25,42 @@
                                     </option>
                                 {% endfor %}
                             </select>
-                        {% else %}
-                        <!-- Cas ou l'utilisateur n'a pas d'adresses-->
-                            <form method="post">
+                            <div class="shipping_address_form d-none">
+                                <div  class="heading_s1">
+                                    <h4 >Information Livraison</h4>
+                                </div>
+                                <!-- Selection d'une adresse différente pour la livraison -->
+                                <select name="address_shipping_id" id="address_shipping_id" class="form-control">
+                                    {% for address in user.addresses.all %}
+                                        <option value="{{address.id}}">
+                                            {{address.full_name}} - {{address.street}}  {{address.city}}  {{address.code_postal}}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Checkbox pour l'adresse de facturation -->
+                            <div class="form-check form-switch">
+                                <input class="addNewAddress form-check-input" type="checkbox" id="add_new_address">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Voulez-vous ajouté une nouvelle adresse ?</label>
+                            </div>
+                            <!-- Checkbox pour demander s'il veut utiliser une autre addresse pour la livraison -->
+                            <div class="form-check form-switch">
+                                <input class="newShippingAddress form-check-input" type="checkbox" id="new_shipping_address"> 
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Voulez-vous utilisé une adresse différente pour la livraison ?</label>
+                            </div>
+                            
+                            <!-- Cas ou l'utilisateur active la checkbox pour enregistrer un nouveau formulaire (apparition du formulaire)-->
+                            <form class="d-none" id="addNewAddressForm" action="{% url 'shop:add_address' %}" method="post">
                                 {% csrf_token %}
                                 {{ address_form }}
-                                <div class="btn btn-success my-1">Enregistrer</div>
+                                <button type="submit" class="btn btn-success my-1">Enregistrer</button>
+                            </form>
+                        {% else %}
+                        <!-- Cas ou l'utilisateur n'a pas d'adresses (affichage du formulaire)-->
+                            <form action="{% url 'shop:add_address' %}" method="post">
+                                {% csrf_token %}
+                                {{ address_form }}
+                                <button type="submit" class="btn btn-success my-1">Enregistrer</button>
                             </form>
                         {% endif %}
                     {% endif %}
@@ -41,6 +71,7 @@
                                 <option {% if cart.carrier_id == carrier.id %} selected {% endif %} value="{{ carrier.id }}">{{ carrier.name }} ({{ carrier.price | format_price }})</option>
                             {% endfor %}
                         </select>
+
                     </div>
 
                 </div>
@@ -115,6 +146,18 @@
 
 {% block scripts %}
 <script>
+    //récupéaration de l'input de la checkbox pour l'apparition du formulaire
+    addAddressInput = document.querySelector('input.addNewAddress')
+
+    //récupéaration de l'input de la checkbox pour savoir si l'adresse de livraison est différente de l'adresse de facturation
+    addShippingAddressInput = document.querySelector('input.newShippingAddress')
+
+    //récupéaration du formulaire nouvelle adresse si checkbox cocher
+    addAddressForm = document.querySelector('form#addNewAddressForm')
+
+    //récupéaration 
+    shippingAddressForm = document.querySelector('.shipping_address_form')
+
     // récupération du transporteur choisi dans le select
     carrierForm = document.querySelector('select#carrier_id')
 
@@ -144,5 +187,30 @@
         window.location.href = newUrl;
     }
     carrierForm.addEventListener('change', updateCarrier)
+
+    //fonction pour afficher le formulaire 
+    const displayForm = (event) =>{
+        const { checked} = event.target
+        if(checked){
+            addAddressForm.classList.remove('d-none')
+        }else{
+            addAddressForm.classList.add('d-none')
+        }
+    }
+    
+    //ecoute de add addresse input
+    addAddressInput.addEventListener('change', displayForm)
+
+    const addShippingAddress = (event) =>{
+        const { checked} = event.target
+        if(checked){
+            shippingAddressForm.classList.remove('d-none')
+        }else{
+            shippingAddressForm.classList.add('d-none')
+        }
+    }
+
+    //ecoute de l'input pour savoir si add fact =! de add livraison
+    addShippingAddressInput.addEventListener('change', addShippingAddress)
 </script>
 {% endblock %}

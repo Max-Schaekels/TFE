@@ -235,6 +235,16 @@ Rapport de Stage de Maximilien Schaekels
 - Modification du nouveau formulaire pour lui ajouter un champ email
 - Ajout de se formulaire à la page checkout pour qu'il s'affiche si l'utilisateur est connecté et n'a pas encore enregistrer d'adresse.
 
+19/11 :
+-------
+
+- Ajout d'une checkbox pour permettre à l'utilisateur d'ajouter une adresse
+- Mise en place du javascript pour que le formulaire pour ajouter une adresse ne soit présent que quand la checkbox est coché et
+  disparait quand elle est décoché. 
+- Ajout d'une checkbox pour demander à l'utilisateur s'il souhaite utilisé une adresse différente pour la livraison
+- Mise en place du javascipt pour l'affichage du selecteur si checkbox cochée. 
+
+
 
 
 
