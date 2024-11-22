@@ -244,9 +244,15 @@ Rapport de Stage de Maximilien Schaekels
 - Ajout d'une checkbox pour demander à l'utilisateur s'il souhaite utilisé une adresse différente pour la livraison
 - Mise en place du javascipt pour l'affichage du selecteur si checkbox cochée. 
 
+22/11 :
+-------
 
-
-
+- Debut du travail sur la page checkout second cas : l'utilisateur n'est pas connecter. 
+- Création d'un espace sur la page lui permettant de se connecter et mise en place dans le template.
+- Ajout d'une fonction à checkout_view pour gérer la connexion. Utilisation de JSON car cela fournit des informations similaire 
+à un dictionnaire python utilisable en javascript car on veut pour la fonction que cela s'éxécute en arrière plan du site.
+- Ajout de javascript au template permettant ce traitement en arrière plan. 
+- Adaptation du template pour rendre les nouveaux éléments uniquement visible lorsque l'utilisateur n'est pas connecter. 
 
 
 

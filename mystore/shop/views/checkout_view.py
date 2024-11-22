@@ -1,8 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect,get_object_or_404
 from shop.services.cart_service import CartService
 from shop.models.Carrier import Carrier
 from shop.forms.CheckoutAddressForm import CheckoutAddressForm
 from django.contrib import messages
+from accounts.forms.CustomLoginForm import CustomLoginForm
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
+from accounts.models.Customer import Customer
+from django.contrib.auth.hashers import make_password
+import random
+import string
 
 
 def index(request):
@@ -42,3 +49,29 @@ def add_address(request):
 
 
     return redirect('shop:checkout')
+
+
+#On utilise JSON car cela fournit des informations similaire à un dictionnaire python utilisable en javascript car on veut pour la fonction que cela s'éxécute en arrière plan du site.
+
+def login_form(request):
+    #Vérification si l'utilisateur est déjà connecter
+    if request.user.is_authenticated:
+        return JsonResponse({"isSuccess": True, 'message': 'Cet utilisateur est déjà connecte'})
+
+    #Vérification de la méthode
+    if request.method == "POST":
+        #Récupération de information de l'utilisateur
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=email, password=password)
+
+        #Vérification qu'on a bien l'user et si oui on le connecte
+        if user is not None:
+            login(request, user)
+            return JsonResponse({"isSuccess": True, 'message': 'Cet utilisateur est connecte'})
+        else:
+            return JsonResponse({"isSuccess": False, 'message': 'Information erronee. Impossible de se connecter'})
+
+    return JsonResponse({"isSuccess": False, 'message': 'Erreur, requête non-valide'})
+

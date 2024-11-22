@@ -28,5 +28,6 @@ urlpatterns = [
     #Checkout
     path('checkout', checkout_view.index, name='checkout'),
     path('checkout/add_address', checkout_view.add_address, name='add_address'),
+    path('checkout/login_form', checkout_view.login_form, name='login_form'),
 
 ]
