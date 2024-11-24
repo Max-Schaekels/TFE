@@ -255,5 +255,13 @@ Rapport de Stage de Maximilien Schaekels
 - Adaptation du template pour rendre les nouveaux éléments uniquement visible lorsque l'utilisateur n'est pas connecter. 
 
 
+24/11 :
+-------
+
+- Suite du travail sur la page Checkout troisième cas : l'utilisateur n'a pas de compte
+- Modification de la view et de la fonction add_address pour récupérer les informations du formulaire et créer un nouveau compte si l'utilisitateur n'en possède pas.
+- Affichage du formulire d'adresse dans la page même si l'utilisateur n'est pas connecté et n'a pas de compte. 
+- Fin du travail sur cette partie. 
+
 
 

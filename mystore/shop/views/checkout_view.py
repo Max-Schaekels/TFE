@@ -40,6 +40,33 @@ def add_address(request):
     if request.method == 'POST' :
         #Récupération du formulaire
         address_form = CheckoutAddressForm(request.POST)
+        if not user.is_authenticated:
+            #On récupère l'email dans la requete
+            email = request.POST.get('email')
+            #On vérifie si l'email existe déjà en base de donnée
+            existing_user = Customer.objects.filter(email=email)
+
+            if existing_user:
+                login(request, existing_user)
+                user = existing_user
+
+            else:
+                new_user = Customer()
+                new_user.username = email
+                new_user.email = email
+                #génération d'un mdp aléatoire en string avec caractère ascii et des nombres
+                password = ''.join(random.choices(string.ascii_letters+string.digits,k=8))
+                #hashage du password (cryptage)
+                new_user.password = make_password(password)
+                
+                # Envoi de mail de création de compte, contenant le mot de passe
+
+                new_user.save()
+                login(request, new_user)
+                user = new_user
+
+
+
         #Vérification de la validité
         if address_form.is_valid():
             address = address_form.save(commit=False) #sauvegarde sans envois en base de donné

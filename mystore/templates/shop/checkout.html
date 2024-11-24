@@ -14,14 +14,12 @@
             <div  class="row">
                 <div  class="col-lg-6">
                     <div  class="toggle_info"><span ><i
-                                 class="fas fa-user"></i>Returning customer? <a
+                                 class="fas fa-user"></i>Déjà client ? <a
                                  href="#loginform" data-bs-toggle="collapse"
-                                aria-expanded="false" class="collapsed">Click here to login</a></span></div>
+                                aria-expanded="false" class="collapsed">Cliquez ici pour vous connecté</a></span></div>
                     <div  id="loginform" class="panel-collapse collapse login_form">
                         <div  class="panel-body">
-                            <p >If you have shopped with us before, please enter your
-                                details below. If you are a new customer, please proceed to the Billing &amp;
-                                Shipping section.</p>
+                            <p >Si vous avez déjà un compte, entrez vos informations si dessous. Si vous êtes un nouveau client, merci de fournir vos informations de facturation/livraison.</p>
                             <!--Formulaire pour proposer la connexion -->
                             <form id="login_form" action="{% url 'shop:login_form' %}" method="post">
                                 {% csrf_token %}
@@ -126,6 +124,13 @@
                                 <button type="submit" class="btn btn-success my-1">Enregistrer</button>
                             </form>
                         {% endif %}
+                    {% else %}
+                            <!-- cas ou l'utilisateur ne possède pas de compte-->
+                            <form action="{% url 'shop:add_address' %}" method="post">
+                                {% csrf_token %}
+                                {{ address_form }}
+                                <button type="submit" class="btn btn-success my-1">Enregistrer</button>
+                            </form>
                     {% endif %}
                     <div  class="heading_s1">
                         <h4 >Changer Societe Livraison</h4>
