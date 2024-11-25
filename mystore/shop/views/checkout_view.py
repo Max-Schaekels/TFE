@@ -15,6 +15,11 @@ import string
 def index(request):
     #Récupération du carrier id via la barre d'adresse
     carrier_id = request.GET.get('carrier_id')
+
+    #Variable pour voir si l'utilisateur est prêt ) payer
+    ready_to_pay = False
+
+
     if carrier_id and carrier_id != '':
         carrier = Carrier.objects.filter(id=carrier_id).first()
         if carrier :
@@ -27,10 +32,13 @@ def index(request):
     cart = CartService.get_cart_details(request)
     carriers = Carrier.objects.all()
     address_form = CheckoutAddressForm()
+    login_form = CustomLoginForm()
     return render(request, 'shop/checkout.html', {
         'cart' : cart, 
         'carriers' : carriers,
         'address_form' : address_form,
+        'login_form' : login_form,
+        'ready_to_pay' : ready_to_pay,
         })
 
 def add_address(request):
@@ -59,7 +67,7 @@ def add_address(request):
                 #hashage du password (cryptage)
                 new_user.password = make_password(password)
                 
-                # Envoi de mail de création de compte, contenant le mot de passe
+                # A faire : Envoi de mail de création de compte, contenant le mot de passe
 
                 new_user.save()
                 login(request, new_user)

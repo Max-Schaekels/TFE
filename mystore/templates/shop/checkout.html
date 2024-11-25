@@ -80,7 +80,9 @@
                         {% if user.addresses.all %}
                         <!-- Cas ou l'utilisateur a des adresses-->
                             <select name="address_billing_id" id="address_billing_id" class="form-control">
+                                <option value="">--- Choissisez une adresse ---</option>
                                 {% for address in user.addresses.all %}
+
                                     <option value="{{address.id}}">
                                         {{address.full_name}} - {{address.street}}  {{address.city}}  {{address.code_postal}}
                                     </option>
@@ -92,6 +94,7 @@
                                 </div>
                                 <!-- Selection d'une adresse différente pour la livraison -->
                                 <select name="address_shipping_id" id="address_shipping_id" class="form-control">
+                                    <option value="">--- Choissisez une adresse ---</option>
                                     {% for address in user.addresses.all %}
                                         <option value="{{address.id}}">
                                             {{address.full_name}} - {{address.street}}  {{address.city}}  {{address.code_postal}}
@@ -201,8 +204,10 @@
                         <div  class="payment_method">
 
                         </div>
+                        {% if ready_to_pay %}
                         <a  href="#" class="btn btn-fill-out btn-block">Payer
                             ({{ cart.sub_total_with_shipping | format_price }})</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -237,8 +242,14 @@
     // récupération du transporteur choisi dans le select
     carrierForm = document.querySelector('select#carrier_id')
 
-    //fonction de mise à jour en fonction du choix du transporteur
-    const updateCarrier = (event) => {
+    // récupération de l'adresse de facturation choisi dans le select
+    billingForm = document.querySelector('select#address_billing_id')
+
+    // récupération de l'adresse de livraison choisi dans le select
+    shippingForm = document.querySelector('select#address_shipping_id')
+
+    //fonction de mise à jour en fonction des choix dans les selects (transporteur - adresse)
+    const sendRequest = (event) => {
         const { name, value } = event.target
        
         //On vérifie si carrier id est défini ou non 
@@ -262,7 +273,11 @@
         // Actualisez le navigateur avec la nouvelle URL
         window.location.href = newUrl;
     }
-    carrierForm?.addEventListener('change', updateCarrier)
+    carrierForm?.addEventListener('change', sendRequest)
+
+    billingForm?.addEventListener('change', sendRequest)
+
+    shippingForm?.addEventListener('change', sendRequest)
 
     //fonction pour afficher le formulaire 
     const displayForm = (event) =>{

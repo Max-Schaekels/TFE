@@ -263,5 +263,30 @@ Rapport de Stage de Maximilien Schaekels
 - Affichage du formulire d'adresse dans la page même si l'utilisateur n'est pas connecté et n'a pas de compte. 
 - Fin du travail sur cette partie. 
 
+25/11 :
+-------
+
+- Début du travail sur la gestion des commandes.
+- Création d'un model Order dans l'application shop pour reprendre les informations générales de la commande.
+- Création d'un model OrderDetail dans l'application shop dans lequel on va se concetrer sur les détails de la commande.  
+- Ajout des deux models au panel admin
+- Modification de checkout_view pour y ajouter une variable bolléene pour vérifier si l'utilisateur est prêt à payer
+- Mise en place de cet ajout dans le template checkout (on ne rend le bouton payement visible que quand l'utilisateur est prêt à payer). 
+- Modification dans le template pour la selection des adresses, ajout d'une option par défaut invitant l'utilisateur à choisir une adresse.
+- Mise en place de Javascript pour récupérer la selection d'adresse. 
+- Modification la fonction updatecarrier pour la rendre fonctionnelle avec les adresses aussi. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

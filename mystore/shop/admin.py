@@ -10,8 +10,10 @@ from shop.models.Social import Social
 from shop.models.Page import Page
 from django.db import models
 from ckeditor.widgets import CKEditorWidget
-from shop.models import Navcollection
-from shop.models import Carrier
+from shop.models.Navcollection import Navcollection
+from shop.models.Carrier import Carrier
+from shop.models.Order import Order
+from shop.models.OrderDetail import OrderDetail
 
 
 
@@ -146,3 +148,7 @@ admin.site.register(Page, PageAdmin)
 admin.site.register(Navcollection, NavcollectionAdmin)
 #Autorisation pour gérer "Carrier" via la page admin du site : 
 admin.site.register(Carrier, CarrierAdmin)
+#Autorisation pour gérer "Order" via la page admin du site : 
+admin.site.register(Order)
+#Autorisation pour gérer "OrderDetail" via la page admin du site : 
+admin.site.register(OrderDetail)
