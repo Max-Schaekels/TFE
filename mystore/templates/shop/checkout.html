@@ -83,12 +83,12 @@
                                 <option value="">--- Choissisez une adresse ---</option>
                                 {% for address in user.addresses.all %}
 
-                                    <option value="{{address.id}}">
+                                    <option value="{{address.id}}" {% if address.id == address_billing_id %}selected{% endif %}>
                                         {{address.full_name}} - {{address.street}}  {{address.city}}  {{address.code_postal}}
                                     </option>
                                 {% endfor %}
                             </select>
-                            <div class="shipping_address_form d-none">
+                            <div class="shipping_address_form {% if new_shipping_address != 'true' %}d-none{% endif %}">
                                 <div  class="heading_s1">
                                     <h4 >Information Livraison</h4>
                                 </div>
@@ -96,7 +96,7 @@
                                 <select name="address_shipping_id" id="address_shipping_id" class="form-control">
                                     <option value="">--- Choissisez une adresse ---</option>
                                     {% for address in user.addresses.all %}
-                                        <option value="{{address.id}}">
+                                        <option value="{{address.id}}" {% if address.id == address_shipping_id %}selected{% endif %}>
                                             {{address.full_name}} - {{address.street}}  {{address.city}}  {{address.code_postal}}
                                         </option>
                                     {% endfor %}
@@ -109,7 +109,7 @@
                             </div>
                             <!-- Checkbox pour demander s'il veut utiliser une autre addresse pour la livraison -->
                             <div class="form-check form-switch">
-                                <input class="newShippingAddress form-check-input" type="checkbox" id="new_shipping_address"> 
+                                <input name="new_shipping_address" class="newShippingAddress form-check-input" type="checkbox" id="new_shipping_address" {% if new_shipping_address == 'true' %}checked{% endif %}> 
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Voulez-vous utilisé une adresse différente pour la livraison ?</label>
                             </div>
                             
@@ -250,20 +250,27 @@
 
     //fonction de mise à jour en fonction des choix dans les selects (transporteur - adresse)
     const sendRequest = (event) => {
-        const { name, value } = event.target
+        const { name, value, type } = event.target
        
-        //On vérifie si carrier id est défini ou non 
-        if (!carrier_id) {
-            return
-        }
 
         const queryParams = new URLSearchParams(window.location.search)
 
-        if (queryParams.has(name)) {
-            queryParams.set(name, value)
-        } else {
-            queryParams.append(name, value)
+        if(type == 'checkbox'){
+            const { checked } = event.target
+            if (queryParams.has(name)) {
+                queryParams.set(name, checked)
+            } else {
+                queryParams.append(name, checked)
+            }
+        }else{
+            if (queryParams.has(name)) {
+                queryParams.set(name, value)
+            } else {
+                queryParams.append(name, value)
+            }
         }
+
+
 
         //Récupération de la nouvelle url
         const newUrl = `${window.location.origin}${window.location.pathname}?${queryParams.toString()}`
@@ -302,7 +309,7 @@
     }
 
     //ecoute de l'input pour savoir si add fact =! de add livraison
-    addShippingAddressInput?.addEventListener('change', addShippingAddress)
+    addShippingAddressInput?.addEventListener('change', sendRequest)
 
 
     //Fonction handleSubmit qui suspend les actions par défaut puis s'éxecute

@@ -275,6 +275,9 @@ Rapport de Stage de Maximilien Schaekels
 - Modification dans le template pour la selection des adresses, ajout d'une option par défaut invitant l'utilisateur à choisir une adresse.
 - Mise en place de Javascript pour récupérer la selection d'adresse. 
 - Modification la fonction updatecarrier pour la rendre fonctionnelle avec les adresses aussi. 
+- modification de checkout_view pour récupérer les id des adresses.
+- Adaptation de la page checkout pour la rendre dynamique avec les derniers ajouts ( modification du bouton
+checkout, ajout de condition pour mettre l'adresse selectionné en adresse par défaut)
 
 
 

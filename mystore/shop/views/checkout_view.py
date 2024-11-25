@@ -16,6 +16,23 @@ def index(request):
     #Récupération du carrier id via la barre d'adresse
     carrier_id = request.GET.get('carrier_id')
 
+    #Récupération de new shipping address via la barre d'adresse
+    new_shipping_address = request.GET.get('new_shipping_address', '')
+
+    #Récupération du billing id via la barre d'adresse
+    address_billing_id = request.GET.get('address_billing_id', '')
+
+    #On regarde si billing id existe et si oui on transformer en entier 
+    if address_billing_id and address_billing_id != "" :
+        address_billing_id = int(address_billing_id)
+
+    #Récupération du shipping id via la barre d'adresse
+    address_shipping_id = request.GET.get('address_shipping_id', address_billing_id)
+
+    #On regarde si shipping id existe et si oui on transformer en entier 
+    if address_shipping_id and address_shipping_id != "" :
+        address_shipping_id = int(address_shipping_id)
+
     #Variable pour voir si l'utilisateur est prêt ) payer
     ready_to_pay = False
 
@@ -39,6 +56,9 @@ def index(request):
         'address_form' : address_form,
         'login_form' : login_form,
         'ready_to_pay' : ready_to_pay,
+        'address_billing_id' : address_billing_id,
+        'address_shipping_id' : address_shipping_id,
+        'new_shipping_address' : new_shipping_address,
         })
 
 def add_address(request):
