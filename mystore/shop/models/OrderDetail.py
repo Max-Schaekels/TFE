@@ -21,4 +21,4 @@ class OrderDetail(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Détail de la commande {self.id} - {self.client_name}"
+        return f"Détail de la commande {self.id} - {self.product_name}"

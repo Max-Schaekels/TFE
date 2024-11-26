@@ -20,3 +20,14 @@ class Address(models.Model):
 
     def __str__(self): #affichage sous forme de chaine de caractère
         return self.name
+
+    #transformer en string 
+    def get_address_as_string(self):
+        address_parts = [
+            self.name,
+            self.full_name,
+            self.street,
+            f"{self.code_postal} {self.city}",
+            self.country,
+        ]
+        return ", ".join(filter(None, address_parts))

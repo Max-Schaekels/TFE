@@ -280,6 +280,21 @@ Rapport de Stage de Maximilien Schaekels
 checkout, ajout de condition pour mettre l'adresse selectionné en adresse par défaut)
 
 
+26/11 :
+-------
+
+- Modification de checkout_view pour implémenter dans la fonctions index la de vérification que
+ l'utilisateur est prêt(à fournis les informations nécessaire) à payer. 
+- Création d'une fonction create order pour créer la commande. 
+- Mise en place de cette fonction lorsque le client est prêt à payer. 
+- Ajout d'une methode au model Address pour le transformer en string pour l'utiliser lors de la commande.
+- Aujout d'une partie concernant les détails de la commande à la fonction create_order. 
+
+
+
+
+
+
 
 
 
