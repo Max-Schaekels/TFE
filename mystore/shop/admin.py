@@ -14,6 +14,7 @@ from shop.models.Navcollection import Navcollection
 from shop.models.Carrier import Carrier
 from shop.models.Order import Order
 from shop.models.OrderDetail import OrderDetail
+from shop.models.Method import Method
 
 
 
@@ -129,6 +130,36 @@ class CarrierAdmin(admin.ModelAdmin):
     
     display_image.short_description = 'image'
 
+#Gestion des donnée affichée sur la page concernant les commandes : 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'client_name', 'billing_address', 'shipping_address', 'quantity', 'taxe', 'order_cost',
+                    'order_cost_ttc', 'is_paid', 'carrier_name', 'carrier_price', )
+    list_filter = ('is_paid', 'created_at', 'updated_at')
+    search_fields = ('client_name', 'billing_address', 'shipping_address', 'carrier_name', 'payment_method')
+
+#Gestion des donnée affichée sur la page concernant les détails de commandes : 
+class OrderDetailAdmin(admin.ModelAdmin):
+    list_display = ('id', 'product_name', 'quantity', 'solde_price', 'sub_total_ht', 'sub_total_ttc')
+    list_filter = ('created_at', 'updated_at')
+    search_fields = ('product_name', 'quantity', 'solde_price', 'sub_total_ht', 'sub_total_ttc')
+
+#Gestion des donnée affichée sur la page concernant methode de payement : 
+class MethodAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'display_image','is_available')
+    list_display_links = ('name',) #ce sur quoi on peut cliquer
+    list_filter = ('is_available','created_at', 'updated_at')
+    search_fields = ('name', 'description',)
+
+    def display_image(self, obj):
+        first_image = obj.logo
+        if not first_image:
+            return ''
+        
+        return format_html(f'<img src="{first_image.url}" heigth="40" width="100" />')
+    
+    display_image.short_description = 'image'
+
+
 
 #Autorisation de gérer les slides via la page admin du site : 
 admin.site.register(Slider, SliderAdmin)
@@ -149,6 +180,8 @@ admin.site.register(Navcollection, NavcollectionAdmin)
 #Autorisation pour gérer "Carrier" via la page admin du site : 
 admin.site.register(Carrier, CarrierAdmin)
 #Autorisation pour gérer "Order" via la page admin du site : 
-admin.site.register(Order)
+admin.site.register(Order, OrderAdmin)
 #Autorisation pour gérer "OrderDetail" via la page admin du site : 
-admin.site.register(OrderDetail)
+admin.site.register(OrderDetail, OrderDetailAdmin)
+#Autorisation pour gérer "Method" via la page admin du site : 
+admin.site.register(Method, MethodAdmin)

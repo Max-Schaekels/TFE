@@ -10,3 +10,4 @@ from .Navcollection import Navcollection
 from .Carrier import Carrier
 from .Order import Order
 from .OrderDetail import OrderDetail
+from .Method import Method

@@ -291,7 +291,13 @@ checkout, ajout de condition pour mettre l'adresse selectionné en adresse par d
 - Aujout d'une partie concernant les détails de la commande à la fonction create_order. 
 
 
+27/11 :
+-------
 
+- Début du travail sur les méthodes de payements.
+- Création d'un model dans l'application shop : Méthode.py
+- Mise en place du model et migration de ce dernier
+- Ajout à admin la possibilité de gérer les méthodes de payement via la page admin du site. 
 
 
 
