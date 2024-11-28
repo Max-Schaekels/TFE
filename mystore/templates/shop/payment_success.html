@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "partials/top_page.html" with name="Commande complète" %}
+
+
+
+<div class="section">
+	<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center order_complete">
+                	<i class="fas fa-check-circle"></i>
+                    <div class="heading_s1">
+                  	<h3>Votre commande est complète </h3>
+                    </div>
+                  	<p>Merci pour votre commande ! Votre commande est en cours de traitement et sera compléter dans les heures à venir. Vous recevrez un mail de confirmation quand votre commande sera traitée.</p>
+                    <a href="{% url 'shop:home' %}" class="btn btn-fill-out">
+                        Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.urls import path
-from shop.views import shop_view , cart_view, compare_view, wishlist_view, checkout_view
+from shop.views import shop_view , cart_view, compare_view, wishlist_view, checkout_view, payment_view
 
 app_name="shop" #nom de l'app
 
@@ -29,5 +29,9 @@ urlpatterns = [
     path('checkout', checkout_view.index, name='checkout'),
     path('checkout/add_address', checkout_view.add_address, name='add_address'),
     path('checkout/login_form', checkout_view.login_form, name='login_form'),
+
+    #Creat payment-intent (nécessaire pour le payement par stripe)
+    path('create-payment-intent/<str:order_id>', payment_view.index, name='create-payment-intent'),
+    path('payment_success', payment_view.payment_success, name='payment_success'),
 
 ]

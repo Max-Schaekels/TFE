@@ -14,6 +14,7 @@ from django.db import transaction
 from shop.models.OrderDetail import OrderDetail
 import random
 import string
+from shop.services.payment_service import StripeService
 
 
 def index(request):
@@ -82,6 +83,7 @@ def index(request):
 
     address_form = CheckoutAddressForm()
     login_form = CustomLoginForm()
+    payment_service = StripeService()
     return render(request, 'shop/checkout.html', {
         'cart' : cart, 
         'carriers' : carriers,
@@ -91,6 +93,7 @@ def index(request):
         'address_billing_id' : address_billing_id,
         'address_shipping_id' : address_shipping_id,
         'new_shipping_address' : new_shipping_address,
+        'public_key' : payment_service.get_public_key(),
         'order_id' : order_id,
         })
 

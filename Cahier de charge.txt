@@ -300,6 +300,24 @@ checkout, ajout de condition pour mettre l'adresse selectionné en adresse par d
 - Ajout à admin la possibilité de gérer les méthodes de payement via la page admin du site. 
 
 
+28/11 :
+-------
+
+- Préparation de l'intégration de la méthode de payement via stripe 
+- installation  du module stripe de python : pip3 install stripe
+- Dans le but de faire apparaitre le mode de payement dans un pop up, je décide d'utiliser un modal de bootstrap v5.3
+- mise en place du modal dans checkout
+- ajout d'un block stripe visant à charger le code de stripe
+- mise en place du javascript de l'api de stripe et personnalisation pour que cela corresponde au site
+- mise à jour de checkout_view pour récupérer les informations du model méthode via un service et les transmettres au template checkout.
+- création d'un service de payement pour récuperer les clés de l'api
+- ajout d'une url dans l'application shop pour le payement
+- création d'une nouvelle view pour le payement : payment_view
+- insertion du code fournis par stripe et adaptation de ce dernier à django. 
+- stylisation du formulaire (changement des noms et des boutons)
+- modification du modèle order (changement des champs interger en float pour prendre en compte les chiffres à virgules)
+- Création d'un template pour page pour la réussite du payement et mise en place de l'url
+- Mise en fonction de la page payment success et test. 
 
 
 
