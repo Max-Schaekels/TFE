@@ -206,8 +206,10 @@
 
                         </div>
                         {% if ready_to_pay %}
-                        <a  href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="btn btn-fill-out btn-block">Payer
+                        <div class="position-fixed start-0 bottom-0 p-1 w-100 shadow-lg">
+                        <a  href="#" data-bs-toggle="modal" data-bs-target="#paymentModal" class="btn btn-fill-out btn-block shadow-lg">Payer
                             ({{ cart.sub_total_with_shipping | format_price }})</a>
+                        </div>
                         {% endif %}
                     </div>
                 </div>

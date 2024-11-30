@@ -321,6 +321,16 @@ checkout, ajout de condition pour mettre l'adresse selectionné en adresse par d
 
 
 
+28/11 :
+-------
+
+- Suite du travail sur la page de validation de la commande
+- Ajout d'une fonction visant à vérifier que la commande est bien payé puis à la récupérer afin de pouvoir l'utiliser par la suite.
+- Modification du bouton payer sur la page checkout pour qu'il soit toujours visible peut importe le nombre d'article dans le panier 
+- Test des nouvelles fonctionnalitées et du payement. 
+
+
+
 
 
 
