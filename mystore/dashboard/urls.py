@@ -2,6 +2,7 @@ from django.urls import path
 from dashboard.views import dashboard_view
 from dashboard.views import address_view
 from dashboard.views import account_view
+from dashboard.views import order_view
 
 
 
@@ -16,5 +17,8 @@ urlpatterns = [
     # account
     path('account', account_view.index, name='account'),
     path('account/save', account_view.save_account, name='save_account'),   
-    path('account/reset/password', account_view.reset_user_password, name='reset_user_password'),     
+    path('account/reset/password', account_view.reset_user_password, name='reset_user_password'),   
+
+    # order
+    path('orders', order_view.index, name='orders'),
 ]

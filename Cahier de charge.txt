@@ -331,8 +331,14 @@ checkout, ajout de condition pour mettre l'adresse selectionné en adresse par d
 
 
 
+02/12 :
+-------
 
-
+- Suppresion des anciennes commandes test
+- Ajout d'un auteur aux commandes pour pouvoir les récupérer dans le dashboard. 
+- Début du travail dans le dashboard pour que l'utilisateur puisse voir ses commandes. 
+- Création d'une view et ajout d'un path dans url
+- modification du template index.html de dashboard pour commencer à y inclure la partie commande. 
 
 
 

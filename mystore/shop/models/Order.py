@@ -1,9 +1,12 @@
 from django.db import models
+from accounts.models.Customer import Customer
 
 
 #Les informations sur le transporteur sont stocker en dur et pas mis en relation
 #afin d'éviter si jamais il y a un changement dans le futur notament dans le prix
 #les anciennes commandes ne soient pas impactées. 
+
+#author est une foreign key mais on le protège de la supression au cas ou l'utilisateur supprimer son compte, on veut pouvoir concerver la commande. 
 
 
 class Order(models.Model):
@@ -12,6 +15,7 @@ class Order(models.Model):
     shipping_address = models.CharField(max_length=255)
     quantity = models.IntegerField()
     taxe = models.FloatField()
+    author = models.ForeignKey(Customer, on_delete=models.PROTECT)
     order_cost = models.FloatField()
     order_cost_ttc = models.FloatField()
     is_paid = models.BooleanField(default=False)

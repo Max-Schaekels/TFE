@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load price_filter %}
 {% block content %}
 
 {% include "partials/top_page.html" with name="Dashboard" %}
@@ -17,7 +17,7 @@
                             <a class="nav-link {% if page == 'index' %}active{% endif %}"  id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="ti-layout-grid2"></i>Dashboard</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link {% if page == 'orders' %}active{% endif %}" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Mes commandes</a>
+                            <a class="nav-link {% if page == 'orders' %}active{% endif %}" id="orders-tab" data-bs-toggle="tab" href="{% url 'dashboard:orders' %}" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Mes commandes</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link {% if page == 'address' %}active{% endif %}" id="address-tab" href="{% url 'dashboard:address' %}" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mes adresses</a>
@@ -57,14 +57,14 @@
                           <div class="tab-pane fade {% if page == 'orders' %}active show{% endif %}" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3>Orders</h3>
+                                    <h3>Commandes</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Order</th>
+                                                    <th>Numero de commande</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
                                                     <th>Total</th>
@@ -72,20 +72,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {% for order in orders %}
                                                 <tr>
-                                                    <td>#1234</td>
-                                                    <td>March 15, 2020</td>
-                                                    <td>Processing</td>
-                                                    <td>$78.00 for 1 item</td>
+                                                    <td>#{{order.id}}</td>
+                                                    <td>{{order.created_at}}</td>
+                                                    <td>En cour de traitement</td>
+                                                    <td>{{order.order_cost_ttc|format_price}} pour {{order.quantity}} objets</td>
                                                     <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>#2366</td>
-                                                    <td>June 20, 2020</td>
-                                                    <td>Completed</td>
-                                                    <td>$81.00 for 1 item</td>
-                                                    <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

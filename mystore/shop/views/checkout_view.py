@@ -177,6 +177,7 @@ def create_order(request, billing_address, shipping_address=None):
 
 
     order.client_name = user.username
+    order.author = user
     order.billing_address = billing_address
     order.shipping_address = shipping_address or billing_address
     order.carrier_name = carrier.name
