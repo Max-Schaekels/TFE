@@ -342,6 +342,15 @@ checkout, ajout de condition pour mettre l'adresse selectionné en adresse par d
 
 
 
+03/12 :
+-------
+
+- modification de partie order, on adapte les models order et orderdetails pour faciliter la récupération de donnée
+- on créer un template partial dans lequel on va mettre les détails de la commande qui s'afficheront dans un modal
+- on ajoute ce partial au template index
+- modification des models order et orderdetail changement des intergerfield en floatfield pour prendre en compte les décimales
+- Fin du projet : pas mal d'amélioration possible. 
+
 
 
 

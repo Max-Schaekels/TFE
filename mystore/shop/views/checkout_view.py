@@ -123,7 +123,7 @@ def add_address(request):
                 #hashage du password (cryptage)
                 new_user.password = make_password(password)
                 
-                # A faire : Envoi de mail de création de compte, contenant le mot de passe
+                
 
                 new_user.save()
                 login(request, new_user)
