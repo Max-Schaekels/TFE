@@ -45,22 +45,17 @@
                             <h4 class="product_title"><a href="#">{{ product.name }}</a></h4>
                             <div class="product_price"><span class="price">{{ product.solde_price | format_price }}</span><del>{{ product.regular_price | format_price }}</del>
                                 <div class="on_sale"><span>{{ product | solde_rate }}</span></div>
-                            </div>
-                            <div class="rating_wrap">
-                                <div class="rating">
-                                    <div class="product_rate" style="width: 80%;">
-                                    </div>
-                                </div><span class="rating_num">(21)</span>
-                            </div>
+                            </div><br><br><br>
+
                             <div class="pr_desc">
                                 <p> {{ product.description }} </p>
                             </div>
                             <div class="product_sort_info">
                                 <ul>
-                                    <li><i class="linearicons-shield-check"></i> 1 Year AL Jazeera Brand Warranty
+                                    <li><i class="linearicons-shield-check"></i> 1 ans de garantie
                                     </li>
-                                    <li><i class="linearicons-sync"></i> 30 Day Return Policy </li>
-                                    <li><i class="linearicons-bag-dollar"></i>Cash on Delivery available</li>
+                                    <li><i class="linearicons-sync"></i> Politique de retour : 30 jours</li>
+                                    
                                 </ul>
                             </div>
                            
@@ -72,32 +67,23 @@
                                         name="quantity" value="1" title="Qty" size="4" class="qty"><input type="button"
                                         value="+" class="plus"></div>
                             </div>
-                            <div class="cart_btn"><button type="button" class="btn btn-fill-out btn-addtocart"><i
-                                        class="icon-basket-loaded"></i> Add to cart
-                                </button><button type="button" class="btn btn-fill-out btn-addtocart"><i
-                                        class="icon-basket-loaded"></i> Pay Now </button></div>
-                            <div class="cart_btn"><a href="#" class="add_compare"><i class="icon-shuffle"></i></a><a
-                                    href="#" class="add_wishlist"><i class="icon-heart"></i></a>
+                            <div class="cart_btn">
+                                <a href="{% url 'shop:add_to_cart' product.id %}">
+                                <button type="button" class="btn btn-fill-out btn-addtocart">
+                                    <i class="icon-basket-loaded"></i> Ajouter au panier </button></a>
+                                    <a href="{% url 'shop:checkout' %}">
+                                <button type="button" class="btn btn-fill-out btn-addtocart"><i class="icon-basket-loaded"></i> Payer </button></a>
+                            </div>
+                            <div class="cart_btn"><a href="{% url 'shop:add_to_compare' product.id %}" class="add_compare"><i class="icon-shuffle"></i></a><a href="{% url 'shop:add_to_wishlist' product.id %}" class="add_wishlist"><i class="icon-heart"></i></a>
                             </div>
                         </div>
-                        <hr><!--bindings={
-  "ng-reflect-ng-if": "false"
-}-->
+                        <hr>
                         <ul class="product-meta">
                             <li>SKU: <a href="#">BE45VGRT</a></li>
-                            <li>Category: <a href="#">Culotes </a></li>
-                            <li>Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">printed</a></li>
+                            
+                            
                         </ul>
-                        <div class="product_share"><span>Share:</span>
-                            <ul class="social_icons">
-                                <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
-                                <li><a href="#"><i class="ion-social-youtube-outline"></i></a>
-                                </li>
-                                <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -115,7 +101,7 @@
                                     class="nav-link active">Description</a></li>
                             <li class="nav-item"><a id="Additional-info-tab" data-bs-toggle="tab"
                                     href="#Additional-info" role="tab" aria-controls="Additional-info"
-                                    aria-selected="false" class="nav-link">Additional info</a></li>
+                                    aria-selected="false" class="nav-link">Information supplémentaires</a></li>
 
                         </ul>
                         <div class="tab-content shop_info_tab">
