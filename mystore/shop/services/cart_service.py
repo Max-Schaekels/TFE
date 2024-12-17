@@ -13,7 +13,7 @@ class CartService:
         else:
             cart[product_id] = quantity
         
-        request.session['cart'] = cart
+        request.session['cart'] = cart #mise à jour du panier
         messages.success(request, f"Produit ajouté au panier.")
     
     @staticmethod
@@ -30,10 +30,10 @@ class CartService:
         request.session['cart'] = cart
         messages.success(request, f"Produit supprimé du panier.")
     
-    @staticmethod
+    @staticmethod #clean du panier
     def clear_cart(request):
         request.session.pop('cart', None)
-        messages.success(request, f"Le panier a été vidé.")
+        
     
     @staticmethod
     def get_cart_details(request): #récupère les détails du panier

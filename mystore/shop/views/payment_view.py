@@ -4,6 +4,7 @@ from shop.models.Order import Order
 from django.http import JsonResponse
 import stripe
 from shop.services.payment_service import StripeService
+from shop.services.cart_service import CartService
 
 def index(request, order_id):
     payment_service = StripeService()
@@ -53,6 +54,7 @@ def payment_success(request):
             order = get_object_or_404(Order, stripe_payment_intent=payment_intent_id)
             order.is_paid = True
             order.save()
+            CartService.clear_cart(request)
             print('Paiement réussi')
             return render (request, 'shop/payment_success.html' , {})
         else :
